@@ -18,6 +18,7 @@ class PlayerMovement
 		{
 			this.player.jumps = 0;
 		}
+		
 		// let liftSpeed = Math.abs(this.player.velocity.y);
 
 		const isDoubleJumpAvailable = this.player.jumps < 2;
@@ -48,8 +49,10 @@ class PlayerMovement
 			this.player.lastJump = now;
 			this.player.jumps++;
 		}
-		if (this.player.x === this.player.previousX)
+		let isMoving = shouldMoveLeft || shouldMoveRight;
+		if (!isMoving)
 		{
+			// console.log('idle');
 			if(this.player.idle) this.player.idle();
 		}
 
