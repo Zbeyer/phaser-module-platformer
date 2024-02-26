@@ -48,14 +48,23 @@ class PlayerMovement
 			this.player.lastJump = now;
 			this.player.jumps++;
 		}
+		if (this.player.x === this.player.previousX)
+		{
+			if(this.player.idle) this.player.idle();
+		}
+
+		this.player.previousX = this.player.x;
+		this.player.previousY = this.player.y;
 	}
 	moveLeft ()
 	{
 		this.player.setVelocityX(-1 * this.speed);
+		if (this.player.onLeft) this.player.onLeft();
 	}
 	moveRight ()
 	{
 		this.player.setVelocityX(this.speed);
+		if (this.player.onRight) this.player.onRight();
 	}
 	moveUp ()
 	{
